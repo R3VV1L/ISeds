@@ -1,0 +1,143 @@
+CREATE database is_eds;
+USE is_eds;
+	CREATE table sotr
+(
+	id_sotr	int not null
+	primary key,
+	name		varchar(12) not null,
+	familia		varchar(20) not null,
+	otch		varchar(50) not null,
+	numt		varchar(12) not null,
+	doljnost	varchar(100) not null
+);
+	CREATE table avSit
+(
+	id_avSit	int not null
+	primary key,
+	id_sotr		int not null,
+	nazv		varchar(100) not null,
+	dataas		varchar(10) not null,
+	id_krab		int not null,
+	prmk_a		varchar(5) not null
+);
+	CREATE table prR
+(
+	id_prR		int not null
+	primary key,
+	id_sotr		int not null,
+	id_krab		int not null,
+	oblast		varchar(100) not null,
+	datar		varchar(10) not null,
+	prmk		varchar(5) not null
+);
+	CREATE table instr
+(
+	id_instr	int not null
+	primary key,
+	n_instr		varchar(100) not null,
+	k_instr		varchar(50) not null
+);
+
+	CREATE table dok
+(
+	id_dok		int not null
+	primary key,
+	n_dok		varchar(100) not null,
+	data_of		varchar(10) not null
+);
+	CREATE table krab
+(
+	id_krab		int not null
+	primary key,
+	id_dok		int not null,
+	id_instr	int not null,
+);
+ALTER table avSit
+ADD foreign key (id_sotr)
+	references sotr(id_sotr);
+
+ALTER table avSit
+ADD foreign key (id_krab)
+	references krab(id_krab);
+
+ALTER table prR
+ADD foreign key (id_sotr)
+	references sotr(id_sotr);
+
+ALTER table prR
+ADD foreign key (id_krab)
+	references krab(id_krab);
+
+ALTER table krab
+ADD foreign key (id_dok)
+	references dok(id_dok);
+
+ALTER table krab
+ADD foreign key (id_instr)
+	references instr(id_instr);
+
+
+INSERT INTO sotr (id_sotr, name, familia, otch, numt, doljnost)
+VALUES ( 1, 'Пётр', 'Петров', 'Петрович', 89881001010, 'сантехник');
+
+INSERT INTO sotr (id_sotr, name, familia, otch, numt, doljnost)
+VALUES ( 2, 'Сергей', 'Ёлкин', 'Михайлович', 89881001050, 'электрик');
+
+INSERT INTO sotr (id_sotr, name, familia, otch, numt, doljnost)
+VALUES ( 3, 'Роман', 'Романов', 'Николаевич', 89881002010, 'инженер-энергетик');
+
+
+INSERT INTO dok (id_dok, data_of, n_dok)
+VALUES ( 1, '20.01.2021', 'Заключение договора с Инструменты');
+
+INSERT INTO dok (id_dok, data_of, n_dok)
+VALUES ( 2, '22.05.2022', 'Приказ на Предсезонные работы');
+
+INSERT INTO dok (id_dok, data_of, n_dok)
+VALUES ( 3, '19.08.2021', 'Отчёт о выполнении Аварийных работ');
+
+
+INSERT INTO instr (id_instr, n_instr, k_instr)
+VALUES ( 1, 'Дрель', 5);
+
+INSERT INTO instr (id_instr, n_instr, k_instr)
+VALUES ( 2, 'Ножовка', 15);
+
+INSERT INTO instr (id_instr, n_instr, k_instr)
+VALUES ( 3, 'Шуруповёрт', 8);
+
+
+INSERT INTO krab (id_krab, id_dok, id_instr)
+VALUES ( 1, 1, 1);
+
+INSERT INTO krab (id_krab, id_dok, id_instr)
+VALUES ( 2, 2, 3);
+
+INSERT INTO krab (id_krab, id_dok, id_instr)
+VALUES ( 3, 3, 2);
+
+
+INSERT INTO prR (id_prR, id_sotr, id_krab, oblast, datar, prmk)
+VALUES ( 2, 2, 1,'Ремонт проводки на втором этаже', '20.01.2021', 'Успешно');
+
+INSERT INTO prR (id_prR, id_sotr, id_krab, oblast, datar, prmk)
+VALUES ( 1, 1, 2,'Ремонт трубопровода', '14.11.2021', 'Успешно');
+
+INSERT INTO prR (id_prR, id_sotr, id_krab, oblast, datar, prmk)
+VALUES ( 3, 3, 3,'Проверка оборудования', '01.10.2021', 'Успешно');
+
+
+
+INSERT INTO avSit (id_avSit, id_sotr, id_krab, nazv, dataas, prmk_a)
+VALUES ( 1, 1, 1,'Устранение поломки трубопровода', '23.05.2022', 'Успешно');
+
+
+CREATE VIEW free_instr
+AS SELECT n_instr
+FROM instr
+WHERE k_instr  0
+
+CREATE VIEW yspesh AS
+SELECT itog, data_torg
+FROM torg
+WHERE itog = 'Успешно'
