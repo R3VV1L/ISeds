@@ -12,7 +12,7 @@ const router = require("./routes/routes.js");
 
 function start() {
   try {
-    app.use("/", router);
+   app.use("/", router);
   } catch (err) {
     console.error(err);
   }

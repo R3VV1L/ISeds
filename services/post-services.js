@@ -7,6 +7,9 @@ const Krab = require("../models/Krab");
 const PrR = require("../models/PrR.js");
 const Job = require("../models/Job");
 const Auth = require("../models/Auth");
+const NeedSotrs = require("../models/needSotrs");
+const sequelize = require("../database/db.js");
+
 
 class PostServices {
   async showAll() {
@@ -18,8 +21,10 @@ class PostServices {
       let prr = await PrR.findAll();
       let job = await Job.findAll();
       let auth = await Auth.findAll();
-      return [post, sotr, dok, krab, prr, job, auth];
-      return await Post.findAll();
+      let needsotrs = await NeedSotrs.findAll();
+      let get_obl = await sequelize.query('CALL get_obl("Работа")')
+      return [post, sotr, dok, krab, prr, job, auth,needsotrs, get_obl];
+
     } catch (err) {
       console.log(
         err

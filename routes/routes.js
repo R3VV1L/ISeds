@@ -5,9 +5,12 @@ const PostDokController = require("../controllers/post-dok-controller.js")
 const PostKrabController = require("../controllers/post-krab-controller.js")
 const PostPrRController = require("../controllers/post-prr-controller.js")
 const PostJobController = require("../controllers/post-job-controller.js")
+// const PostGetOblController = require("../controllers/post-get_obl-controller.js")
 const router = new Router();
 
 router.get("/show/card/", PostController.showAll);
+
+// router.get("/get/test/", PostGetOblController.showAll);
 
 router.post("/add/card", PostController.add);
 router.post("/add/sotr", PostSotrController.add);
