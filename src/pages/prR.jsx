@@ -13,6 +13,13 @@ const PrR = () => {
           <tr><td><PersonList element='id_prR' row='4' /></td><td><PersonList element='id_sotr' row='4' /></td><td><PersonList element='id_krab' row='4' /></td><td><PersonList element='oblast' row='4' /></td><td><PersonList element='datar' row='4' /></td><td><PersonList element='prmk' row='4' /></td></tr>
         </table>
       </div>
+      <div className="containerTable1">
+        <h2>Процедура поиска по ключевому слову "Ремонт":</h2>
+        <table>
+          <tr><th>область</th><th>id работы</th></tr>
+          <tr><td><PersonList element='oblast' row='8' /></td><td><PersonList element='id_prR' row='8' /></td></tr>
+          </table>
+      </div>
     </div>
   )
 }
