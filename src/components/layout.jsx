@@ -42,9 +42,6 @@ const Layout = ({ stage }) => {
 
             </header>
             <Outlet />   {/*сюда вставляются отрисовки страниц из app*/}
-            <footer>
-                <div className='textFooter'>is_eds(beta) ver.0.9.8 </div>
-            </footer>
         </>
     )
 }
