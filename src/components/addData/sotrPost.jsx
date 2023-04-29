@@ -58,7 +58,7 @@ const SotrPost = (props) => {
               value={text5}
               onChange={(event) => setText5(event.target.value)} placeholder='должность'
             />
-            <button type="submit">отправить</button>
+            <button type="submit" className="authBtn d-flex">отправить</button>
           </div>
         </label>
       </form>

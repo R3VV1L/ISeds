@@ -60,7 +60,6 @@ function App() {
         {stage === 1 && nav?.map((e) => (e.id === 2 && e.content))}
         {stage === 1 && nav?.map((e) => (e.id === 5 && e.content))}
         {stage === 1 && nav?.map((e) => (e.id === 6 && e.content))}
-        {/* {nav?.map((e) => e.content)} */}
       </Routes>
       <footer>
         <div className="textFooter">is_eds ver.1.1.0 </div>

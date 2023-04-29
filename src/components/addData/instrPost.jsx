@@ -40,7 +40,7 @@ const InstrPost = (props) => {
               value={text2}
               onChange={(event) => setText2(event.target.value)} placeholder='количество'
             />
-            <button type="submit">отправить</button>
+            <button type="submit" className="authBtn d-flex">отправить</button>
           </div>
         </label>
 
